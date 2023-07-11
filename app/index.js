@@ -1,5 +1,6 @@
 const express = require('express');
 const sequelize =require('./util/database');
+const userRouter = require('./routes/userRouter');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -13,6 +14,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'DELETE');
   next();
 });
+
+app.use('/api/v1/user', userRouter);
 
 (async () => {
   try {
