@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    image: backend:0.0.1
+    build:
+      context: .
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - PG_DATABASE=job_board
+      - PG_USER=ersajo
+      - PG_PASSWORD=jobboard12345
+      - PG_HOST=pg_db
+    depends_on:
+      - pg_db
+  pg_db:
+    container_name: pg_db
+    image: "postgres:15"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=ersajo
+      - POSTGRES_PASSWORD=jobboard12345
+      - POSTGRES_DB=job_board
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
