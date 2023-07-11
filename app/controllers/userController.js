@@ -11,7 +11,7 @@ const getAll = async (req, res) => {
 
 const getOne = async (req, res) => {
   try {
-    const One = await User.findByPk(req.params.id);
+    const One = await UserModel.findByPk(req.params.id);
     return res.status(200).json({ result: One });
   } catch (error) {
     return res.status(500).json({ error: error });
@@ -21,7 +21,7 @@ const getOne = async (req, res) => {
 const createOne = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const user = await User.create({
+    const user = await UserModel.create({
       username: username,
       email: email,
       password: password,
@@ -36,7 +36,7 @@ const createOne = async (req, res) => {
 const updateOne = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const user = await User.update({
+    const user = await UserModel.update({
       username: username,
       email: email,
       password: password,
@@ -49,7 +49,7 @@ const updateOne = async (req, res) => {
 
 const deleteOne = async (req, res, next) => {
   try {
-    const user = await User.destroy({ where: { id: req.params.id } });
+    const user = await UserModel.destroy({ where: { id: req.params.id } });
     return res.status(200).json({ result: user });
   } catch (error) {
     return res.status(500).json({ error: error });
