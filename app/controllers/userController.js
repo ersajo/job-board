@@ -36,11 +36,12 @@ const login = async (req, res) => {
 
 const createOne = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { email, firstName, lastName, password } = req.body;
     const user = await userService.createOne({
-      username: username,
-      email: email,
-      password: password,
+      email,
+      password,
+      firstName,
+      lastName,
     });
     console.log("User created successfully on database");
     delete user.dataValues.password;
@@ -52,12 +53,13 @@ const createOne = async (req, res) => {
 
 const updateOne = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { email, firstName, lastName, password } = req.body;
     const user = await userService.updateOne({
       id: req.user.id,
-      username: username,
-      email: email,
-      password: password,
+      email,
+      password,
+      firstName,
+      lastName,
     });
     delete user.dataValues.password;
     return res.status(200).json(user);

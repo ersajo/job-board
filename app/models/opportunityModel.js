@@ -1,34 +1,38 @@
 const Sequelize = require('sequelize');
-const bcrypt = require('bcrypt');
 const db = require('../util/database');
 
-const User = db.define('users', {
+const Opportunity = db.define('opportunities', {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  firstName: {
-    type: Sequelize.STRING,
+  companyId: {
+    type: Sequelize.UUID,
     allowNull: false,
   },
-  lastName: {
+  title: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  password: {
+  description: {
+    type: Sequelize.STRING(1000),
+    allowNull: false,
+  },
+  location: {
     type: Sequelize.STRING,
     allowNull: false,
-    set(value) {
-      this.setDataValue('password', bcrypt.hashSync(value, 10));
-    }
+  },
+  minSalary: {
+    type: Sequelize.FLOAT,
+  },
+  maxSalary: {
+    type: Sequelize.FLOAT,
+  },
+  skills: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
   },
 });
 
-module.exports = User;
+module.exports = Opportunity;

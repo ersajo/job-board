@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 const db = require('../util/database');
 
-const User = db.define('users', {
+const Company = db.define('companies', {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
@@ -14,11 +14,7 @@ const User = db.define('users', {
     allowNull: false,
     unique: true,
   },
-  firstName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  lastName: {
+  name: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -29,6 +25,10 @@ const User = db.define('users', {
       this.setDataValue('password', bcrypt.hashSync(value, 10));
     }
   },
+  description: {
+    type: Sequelize.STRING(1000),
+    allowNull: false,
+  },
 });
 
-module.exports = User;
+module.exports = Company;
