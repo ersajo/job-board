@@ -33,12 +33,12 @@ const Opportunity = db.define('opportunities', {
   maxSalary: {
     type: Sequelize.FLOAT,
   },
-  skills: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
-  },
 });
 
+const OpportunitySkills = db.define('opportunitySkills', {}, { timestamps: false });
+
 Opportunity.hasMany(Application, { foreignKey: 'opportunityId', onDelete: 'CASCADE' });
-Skill.belongsToMany(Opportunity, { through: 'opportunitySkills', foreignKey: 'skillId' });
+Opportunity.belongsToMany(Skill, { through: OpportunitySkills });
+Skill.belongsToMany(Opportunity, { through: OpportunitySkills });
 
 module.exports = Opportunity;

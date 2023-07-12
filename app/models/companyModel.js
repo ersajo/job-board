@@ -25,7 +25,7 @@ const Company = db.define('companies', {
     allowNull: false,
     set(value) {
       this.setDataValue('password', bcrypt.hashSync(value, 10));
-    }
+    },
   },
   description: {
     type: Sequelize.STRING(1000),

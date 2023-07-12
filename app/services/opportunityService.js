@@ -1,8 +1,14 @@
 const OpportunityModel = require('../models/opportunityModel');
+const SkillModel = require('../models/skillModel');
 
 const createOne = async (opportunity) => {
   try {
-    const newOpportunity = await OpportunityModel.create(opportunity);
+    const newOpportunity = await OpportunityModel.create({
+      ...opportunity,
+      skills: opportunity.skills.map(skill => ({ name: skill })),
+    }, {
+      include: [SkillModel]
+    });
     return newOpportunity;
   } catch (error) {
     console.log('Error to create opportunity:', error);
@@ -12,7 +18,10 @@ const createOne = async (opportunity) => {
 
 const getAllByCompany = async (companyId) => {
   try {
-    const opportunities = await OpportunityModel.findAll({ where: { companyId: companyId } });
+    const opportunities = await OpportunityModel.findAll({
+      where: { companyId: companyId },
+      include: [SkillModel]
+    });
     return opportunities;
   } catch (error) {
     console.log('Error to find opportunities:', error);
