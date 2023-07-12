@@ -12,6 +12,6 @@ const Skill = db.define('skills', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-});
+}, { timestamps: false });
 
 module.exports = Skill;
