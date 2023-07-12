@@ -2,6 +2,8 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
 const db = require('../util/database');
 
+const Opportunity = require('./opportunityModel');
+
 const Company = db.define('companies', {
   id: {
     type: Sequelize.UUID,
@@ -30,5 +32,7 @@ const Company = db.define('companies', {
     allowNull: false,
   },
 });
+
+Company.hasMany(Opportunity, { foreignKey: 'companyId', onDelete: 'CASCADE' });
 
 module.exports = Company;

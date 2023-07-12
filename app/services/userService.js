@@ -20,16 +20,6 @@ const getOneByEmail = async (email) => {
   }
 }
 
-const getAll = async () => {
-  try {
-    const users = await UserModel.findAll();
-    return users;
-  } catch (error) {
-    console.log('Error to find users:', error);
-    return null;
-  }
-}
-
 const createOne = async (data) => {
   try {
     const user = await UserModel.create(data);
@@ -44,9 +34,10 @@ const createOne = async (data) => {
 const updateOne = async (data) => {
   try {
     const user = await UserModel.update({
-      username: data.username,
       email: data.email,
       password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
     }, { where: { id: data.id } });
     console.log("User updated successfully on database");
     return user;
@@ -70,7 +61,6 @@ const deleteOne = async (id) => {
 module.exports = {
   getOneById,
   getOneByEmail,
-  getAll,
   createOne,
   updateOne,
   deleteOne,
