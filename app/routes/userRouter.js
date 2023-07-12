@@ -1,12 +1,13 @@
 const express = require('express');
 const UserController = require('../controllers/userController');
+const { verifyToken } = require('../middleware/index');
 
 const router = express.Router();
 
-router.get('/', UserController.getAll);
-router.get('/:id', UserController.getOne);
+router.get('/', verifyToken, UserController.getAll);
+router.get('/me', verifyToken, UserController.getOne);
 router.post('/', UserController.createOne);
-router.put('/:id', UserController.updateOne);
-router.delete('/:id', UserController.deleteOne);
+router.put('/me', verifyToken, UserController.updateOne);
+router.delete('/:id', verifyToken, UserController.deleteOne);
 
 module.exports = router;

@@ -10,6 +10,7 @@ services:
       - "4000:4000"
     environment:
       - PORT=4000
+      - SECRET=supersecret
       - PG_DATABASE=job_board
       - PG_USER=ersajo
       - PG_PASSWORD=jobboard12345
