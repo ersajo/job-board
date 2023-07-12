@@ -4,10 +4,10 @@ const { verifyToken } = require('../middleware/index');
 
 const router = express.Router();
 
-router.get('/', verifyToken, UserController.getAll);
-router.get('/me', verifyToken, UserController.getOne);
 router.post('/', UserController.createOne);
-router.put('/me', verifyToken, UserController.updateOne);
-router.delete('/:id', verifyToken, UserController.deleteOne);
+router.get('/', verifyToken, UserController.getOne);
+router.put('/', verifyToken, UserController.updateOne);
+router.delete('/', verifyToken, UserController.deleteOne);
+router.post('/login', UserController.login);
 
 module.exports = router;

@@ -1,16 +1,6 @@
 const userService = require('../services/userService');
 const auth = require('../util/auth');
 
-const getAll = async (req, res) => {
-  try {
-    const users = await userService.getAll();
-    users.map((user) => delete user.dataValues.password);
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
 const getOne = async (req, res) => {
   try {
     const user = await userService.getOneById(req.user.id);
@@ -78,7 +68,6 @@ const deleteOne = async (req, res) => {
 };
 
 module.exports = {
-  getAll,
   getOne,
   createOne,
   updateOne,
