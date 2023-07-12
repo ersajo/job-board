@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../util/database');
 
-const Opportunity = require('./opportunityModel');
 const User = require('./userModel');
 
 const Application = db.define('applications', {
@@ -29,6 +28,5 @@ const Application = db.define('applications', {
 });
 
 Application.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
-Application.belongsTo(Opportunity, { foreignKey: 'opportunityId', onDelete: 'CASCADE' });
 
 module.exports = Application;

@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../util/database');
 
-const Company = require('./companyModel');
 const Application = require('./applicationModel');
 const Skill = require('./skillModel');
 
@@ -39,8 +38,7 @@ const Opportunity = db.define('opportunities', {
   },
 });
 
-Opportunity.belongsTo(Company, { foreignKey: 'companyId', onDelete: 'CASCADE' });
 Opportunity.hasMany(Application, { foreignKey: 'opportunityId', onDelete: 'CASCADE' });
-Opportunity.belongsToMany(Skill, { through: 'opportunitySkills', foreignKey: 'opportunityId' });
+Skill.belongsToMany(Opportunity, { through: 'opportunitySkills', foreignKey: 'skillId' });
 
 module.exports = Opportunity;

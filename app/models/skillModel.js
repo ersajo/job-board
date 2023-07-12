@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../util/database');
 
-const Opportunity = require('./opportunityModel');
-
 const Skill = db.define('skills', {
   id: {
     type: Sequelize.UUID,
@@ -15,7 +13,5 @@ const Skill = db.define('skills', {
     allowNull: false,
   },
 });
-
-Skill.belongsToMany(Opportunity, { through: 'opportunitySkills', foreignKey: 'skillId' });
 
 module.exports = Skill;
