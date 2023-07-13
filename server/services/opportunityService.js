@@ -68,6 +68,8 @@ const getAll = async (query) => {
     if (query.location) finalQuery.location = { [Op.substring]: query.location };
     if (query.companyName) finalQuery['$company.name$'] = { [Op.substring]: query.companyName };
     if (query.skills) finalQuery.skills = { [Op.contains]: query.skills.split(',') };
+    if (query.minSalary) finalQuery.salary = { [Op.gte]: Number(query.minSalary) };
+    if (query.maxSalary) finalQuery.salary = { [Op.lte]: Number(query.maxSalary) };
     console.log('finalQuery:', finalQuery);
     const opportunities = await OpportunityModel.findAll({
       where: finalQuery,

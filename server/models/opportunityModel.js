@@ -26,11 +26,8 @@ const Opportunity = db.define('opportunities', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  minSalary: {
-    type: Sequelize.FLOAT,
-  },
-  maxSalary: {
-    type: Sequelize.FLOAT,
+  salary: {
+    type: Sequelize.INTEGER,
   },
   skills: {
     type: Sequelize.ARRAY(Sequelize.STRING),

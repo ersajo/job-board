@@ -25,7 +25,7 @@ app.use('/api/v1/jobs', jobRouter);
 
 (async () => {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     app.listen(PORT, () => console.log(`Listening on: http://localhost:${PORT}/`));
   } catch (error) {
     console.log(error);
