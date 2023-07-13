@@ -2,7 +2,6 @@ const Sequelize = require('sequelize');
 const db = require('../util/database');
 
 const Application = require('./applicationModel');
-const Skill = require('./skillModel');
 
 const Opportunity = db.define('opportunities', {
   id: {
@@ -33,12 +32,12 @@ const Opportunity = db.define('opportunities', {
   maxSalary: {
     type: Sequelize.FLOAT,
   },
+  skills: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: [],
+  },
 });
 
-const OpportunitySkills = db.define('opportunitySkills', {}, { timestamps: false });
-
 Opportunity.hasMany(Application, { foreignKey: 'opportunityId', onDelete: 'CASCADE' });
-Opportunity.belongsToMany(Skill, { through: OpportunitySkills });
-Skill.belongsToMany(Opportunity, { through: OpportunitySkills });
 
 module.exports = Opportunity;

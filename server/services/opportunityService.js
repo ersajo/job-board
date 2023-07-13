@@ -1,16 +1,10 @@
 const { Op } = require('sequelize');
 const CompanyModel = require('../models/companyModel');
 const OpportunityModel = require('../models/opportunityModel');
-const SkillModel = require('../models/skillModel');
 
 const createOne = async (opportunity) => {
   try {
-    const newOpportunity = await OpportunityModel.create({
-      ...opportunity,
-      skills: opportunity.skills.map(skill => ({ name: skill })),
-    }, {
-      include: [SkillModel]
-    });
+    const newOpportunity = await OpportunityModel.create(opportunity);
     return newOpportunity;
   } catch (error) {
     console.log('Error to create opportunity:', error);
@@ -22,7 +16,6 @@ const getAllByCompany = async (companyId) => {
   try {
     const opportunities = await OpportunityModel.findAll({
       where: { companyId: companyId },
-      include: [SkillModel]
     });
     return opportunities;
   } catch (error) {
@@ -33,9 +26,7 @@ const getAllByCompany = async (companyId) => {
 
 const getOneById = async (id) => {
   try {
-    const opportunity = await OpportunityModel.findByPk(id, {
-      include: [SkillModel]
-    });
+    const opportunity = await OpportunityModel.findByPk(id);
     return opportunity;
   } catch (error) {
     console.log('Error to find opportunity:', error);
@@ -76,11 +67,11 @@ const getAll = async (query) => {
     const finalQuery = {};
     if (query.location) finalQuery.location = { [Op.substring]: query.location };
     if (query.companyName) finalQuery['$company.name$'] = { [Op.substring]: query.companyName };
+    if (query.skills) finalQuery.skills = { [Op.contains]: query.skills.split(',') };
     console.log('finalQuery:', finalQuery);
     const opportunities = await OpportunityModel.findAll({
       where: finalQuery,
       include: [
-        { model: SkillModel },
         { model: CompanyModel },
       ],
     });
