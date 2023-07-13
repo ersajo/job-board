@@ -16,6 +16,7 @@ const Application = db.define('applications', {
   },
   resume: {
     type: Sequelize.STRING,
+    allowNull: false,
   },
   marked: {
     type: Sequelize.BOOLEAN,
