@@ -11,6 +11,7 @@ const Skill = db.define('skills', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
 }, { timestamps: false });
 

@@ -34,5 +34,6 @@ const Company = db.define('companies', {
 });
 
 Company.hasMany(Opportunity, { foreignKey: 'companyId', onDelete: 'CASCADE' });
+Opportunity.belongsTo(Company, { foreignKey: 'companyId' });
 
 module.exports = Company;

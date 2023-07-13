@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+const CompanyModel = require('../models/companyModel');
 const OpportunityModel = require('../models/opportunityModel');
 const SkillModel = require('../models/skillModel');
 
@@ -68,10 +70,19 @@ const deleteOne = async (id) => {
   }
 }
 
-const getAll = async () => {
+const getAll = async (query) => {
   try {
+    console.log('query:', query);
+    const finalQuery = {};
+    if (query.location) finalQuery.location = { [Op.substring]: query.location };
+    if (query.companyName) finalQuery['$company.name$'] = { [Op.substring]: query.companyName };
+    console.log('finalQuery:', finalQuery);
     const opportunities = await OpportunityModel.findAll({
-      include: [SkillModel]
+      where: finalQuery,
+      include: [
+        { model: SkillModel },
+        { model: CompanyModel },
+      ],
     });
     return opportunities;
   } catch (error) {

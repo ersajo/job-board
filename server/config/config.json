@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "ersajo",
+    "password": "jobboard12345",
+    "database": "job_board",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "ersajo",
+    "password": "jobboard12345",
+    "database": "job_board",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ersajo",
+    "password": "jobboard12345",
+    "database": "job_board",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

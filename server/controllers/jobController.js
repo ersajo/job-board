@@ -78,7 +78,8 @@ const deleteJob = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const jobs = await opportunityService.getAll();
+    const query = req.query;
+    const jobs = await opportunityService.getAll(query);
     return res.status(200).json(jobs);
   } catch (error) {
     console.log('Error to find jobs:', error);
