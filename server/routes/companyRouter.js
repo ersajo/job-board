@@ -18,6 +18,7 @@ router.post('/login', CompanyController.login);
 router.post('/jobs', verifyCompanyToken, JobController.createJob);
 router.get('/jobs', verifyCompanyToken, JobController.getJobs);
 router.get('/jobs/:id', verifyCompanyToken, JobController.getDetailedJob);
+router.get('/jobs/:id/candidates', verifyCompanyToken, JobController.getCandidatesByJob);
 router.put('/jobs/:id', verifyCompanyToken, JobController.updateJob);
 router.delete('/jobs/:id', verifyCompanyToken, JobController.deleteJob);
 

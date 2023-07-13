@@ -20,6 +20,6 @@ const Application = db.define('applications', {
   },
 });
 
-Application.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
+Application.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Application;

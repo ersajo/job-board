@@ -36,5 +36,6 @@ const Opportunity = db.define('opportunities', {
 });
 
 Opportunity.hasMany(Application, { foreignKey: 'opportunityId', onDelete: 'CASCADE' });
+Application.belongsTo(Opportunity, { foreignKey: 'opportunityId' });
 
 module.exports = Opportunity;

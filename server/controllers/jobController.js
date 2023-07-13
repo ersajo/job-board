@@ -1,4 +1,5 @@
 const opportunityService = require('../services/opportunityService');
+const applicationService = require('../services/applicationService');
 
 const createJob = async (req, res) => {
   try {
@@ -67,7 +68,7 @@ const deleteJob = async (req, res) => {
   try {
     const job = await opportunityService.getOneById(req.params.id);
     if (job.companyId !== req.user.id) return res.status(500).json({ error: 'Not authorized' });
-    const deletedJob = await opportunityService.deleteOne(req.params.id);
+    await opportunityService.deleteOne(req.params.id);
     console.log("Job deleted successfully on database");
     return res.status(200).json({ message: 'Job deleted successfully' });
   } catch (error) {
@@ -87,6 +88,16 @@ const getAll = async (req, res) => {
   }
 }
 
+const getCandidatesByJob = async (req, res) => {
+  try {
+    const candidates = await applicationService.getCandidatesByJob(req.params.id);
+    return res.status(200).json(candidates);
+  } catch (error) {
+    console.log('Error to find candidates:', error);
+    return res.status(500).json({ error: error });
+  }
+}
+
 module.exports = {
   createJob,
   getJobs,
@@ -94,4 +105,5 @@ module.exports = {
   updateJob,
   deleteJob,
   getAll,
+  getCandidatesByJob,
 }

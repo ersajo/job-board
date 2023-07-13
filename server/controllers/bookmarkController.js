@@ -27,7 +27,7 @@ const getAllByUser = async (req, res) => {
 const deleteOne = async (req, res) => {
   try {
     const { id } = req.params;
-    const bookmark = await bookmarkService.deleteOne(id, req.user.id);
+    await bookmarkService.deleteOne(id, req.user.id);
     return res.status(200).json({ message: 'Bookmark deleted successfully' });
   } catch (error) {
     console.log('Error to delete bookmark:', error);
