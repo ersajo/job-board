@@ -16,7 +16,6 @@ const create = async (req, res) => {
           userId: req.user.id,
           resume: uploadPath,
           opportunityId,
-          applied: true,
         });
         return res.status(200).json(application);
       }

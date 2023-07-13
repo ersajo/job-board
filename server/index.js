@@ -6,6 +6,7 @@ const userRouter = require('./routes/userRouter');
 const companyRouter = require('./routes/companyRouter');
 const jobRouter = require('./routes/jobRouter');
 const applicationRouter = require('./routes/applicationRouter');
+const bookmarkRouter = require('./routes/bookmarkRouter');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -26,6 +27,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/company', companyRouter);
 app.use('/api/v1/jobs', jobRouter);
 app.use('/api/v1/applications', applicationRouter);
+app.use('/api/v1/bookmarks', bookmarkRouter);
 
 (async () => {
   try {

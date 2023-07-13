@@ -69,7 +69,7 @@ const deleteJob = async (req, res) => {
     if (job.companyId !== req.user.id) return res.status(500).json({ error: 'Not authorized' });
     const deletedJob = await opportunityService.deleteOne(req.params.id);
     console.log("Job deleted successfully on database");
-    return res.status(200).json(deletedJob);
+    return res.status(200).json({ message: 'Job deleted successfully' });
   } catch (error) {
     console.log('Error to delete job:', error);
     return res.status(500).json({ error: error });

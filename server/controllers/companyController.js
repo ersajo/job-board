@@ -61,7 +61,7 @@ const updateOne = async (req, res) => {
 const deleteOne = async (req, res) => {
   try {
     const company = await companyService.deleteOne(req.user.id);
-    return res.status(200).json(company);
+    return res.status(200).json({ message: 'Company deleted successfully' });
   } catch (error) {
     return res.status(500).json({ error: error });
   }

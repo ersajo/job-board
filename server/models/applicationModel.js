@@ -18,14 +18,6 @@ const Application = db.define('applications', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  marked: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
-  applied: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
 });
 
 Application.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' });
