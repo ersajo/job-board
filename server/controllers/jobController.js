@@ -33,6 +33,7 @@ const getJobs = async (req, res) => {
 const getDetailedJob = async (req, res) => {
   try {
     const job = await opportunityService.getOneById(req.params.id);
+    if (job.companyId !== req.user.id) return res.status(500).json({ error: 'Not authorized' });
     return res.status(200).json(job);
   } catch (error) {
     console.log('Error to find job:', error);
@@ -43,7 +44,9 @@ const getDetailedJob = async (req, res) => {
 const updateJob = async (req, res) => {
   try {
     const { title, description, location, minSalary, maxSalary, skills } = req.body;
-    const job = await opportunityService.updateOne({
+    const job = await opportunityService.getOneById(req.params.id);
+    if (job.companyId !== req.user.id) return res.status(500).json({ error: 'Not authorized' });
+    const updatedJob = await opportunityService.updateOne({
       id: req.params.id,
       title,
       description,
@@ -53,7 +56,7 @@ const updateJob = async (req, res) => {
       skills,
     });
     console.log("Job updated successfully on database");
-    return res.status(200).json(job);
+    return res.status(200).json(updatedJob);
   } catch (error) {
     console.log('Error to update job:', error);
     return res.status(500).json({ error: error });
@@ -62,9 +65,11 @@ const updateJob = async (req, res) => {
 
 const deleteJob = async (req, res) => {
   try {
-    const job = await opportunityService.deleteOne(req.params.id);
+    const job = await opportunityService.getOneById(req.params.id);
+    if (job.companyId !== req.user.id) return res.status(500).json({ error: 'Not authorized' });
+    const deletedJob = await opportunityService.deleteOne(req.params.id);
     console.log("Job deleted successfully on database");
-    return res.status(200).json(job);
+    return res.status(200).json(deletedJob);
   } catch (error) {
     console.log('Error to delete job:', error);
     return res.status(500).json({ error: error });
