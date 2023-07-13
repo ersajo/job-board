@@ -3,6 +3,7 @@ const cors = require('cors');
 const sequelize =require('./util/database');
 const userRouter = require('./routes/userRouter');
 const companyRouter = require('./routes/companyRouter');
+const jobRouter = require('./routes/jobRouter');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/company', companyRouter);
+app.use('/api/v1/jobs', jobRouter);
 
 (async () => {
   try {

@@ -68,10 +68,23 @@ const deleteOne = async (id) => {
   }
 }
 
+const getAll = async () => {
+  try {
+    const opportunities = await OpportunityModel.findAll({
+      include: [SkillModel]
+    });
+    return opportunities;
+  } catch (error) {
+    console.log('Error to find opportunities:', error);
+    return null;
+  }
+}
+
 module.exports = {
   createOne,
   getAllByCompany,
   getOneById,
   updateOne,
   deleteOne,
+  getAll,
 }

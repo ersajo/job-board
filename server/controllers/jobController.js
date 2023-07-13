@@ -71,10 +71,21 @@ const deleteJob = async (req, res) => {
   }
 }
 
+const getAll = async (req, res) => {
+  try {
+    const jobs = await opportunityService.getAll();
+    return res.status(200).json(jobs);
+  } catch (error) {
+    console.log('Error to find jobs:', error);
+    return res.status(500).json({ error: error });
+  }
+}
+
 module.exports = {
   createJob,
   getJobs,
   getDetailedJob,
   updateJob,
   deleteJob,
+  getAll,
 }
