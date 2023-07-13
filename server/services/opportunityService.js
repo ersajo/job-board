@@ -31,7 +31,9 @@ const getAllByCompany = async (companyId) => {
 
 const getOneById = async (id) => {
   try {
-    const opportunity = await OpportunityModel.findByPk(id);
+    const opportunity = await OpportunityModel.findByPk(id, {
+      include: [SkillModel]
+    });
     return opportunity;
   } catch (error) {
     console.log('Error to find opportunity:', error);
