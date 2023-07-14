@@ -1,1 +1,11 @@
-<p>home works!</p>
+<div class="h-screen w-screen flex flex-col justify-center items-center">
+  <div class="mb-8 text-4xl font-bold text-violet-600">Job board</div>
+  <div class="flex gap-8">
+    <a [routerLink]="['/user/login']">
+      <div class="py-2 px-4 loginButton">Login as Job seeker</div>
+    </a>
+    <a [routerLink]="['/company/login']">
+      <div class="py-2 px-4 loginButton">Login as Company</div>
+    </a>
+  </div>
+</div>

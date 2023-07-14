@@ -3,7 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Job Board' } },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  {
+    path: 'company',
+    loadChildren: () => import('./components/company/company.module').then(m => m.CompanyModule),
+  }
 ];
 
 @NgModule({
