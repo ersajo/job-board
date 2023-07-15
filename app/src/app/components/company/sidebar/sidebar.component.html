@@ -2,16 +2,20 @@
   <div class="flex justify-center text-4xl font-bold">Job Board</div>
   <div class="flex grow md:flex-col gap-x-2 md:gap-x-0 mt-2 text-sm md:text-lg justify-between">
     <div class="md:grow">
-      <div class="flex hover:font-bold hover:bg-violet-700 rounded-xl p-2 md:p-0 justify-center gap-x-2">
-        <a routerLink="/company/dashboard" routerLinkActive="font-bold" class="flex items-center gap-x-2 hover:pointer">
+      <div class="flex md:flex-col :font-bold justify-center gap-x-2">
+        <a routerLink="/company/dashboard" routerLinkActive="font-bold" class="flex items-center gap-x-2 hover:pointer hover:bg-violet-700 rounded-xl p-2 md:p-0">
           <fa-icon [icon]="tachometerIcon"></fa-icon>
           <span>Dashboard</span>
+        </a>
+        <a routerLink="/company/jobs" routerLinkActive="font-bold" class="flex items-center gap-x-2 hover:pointer hover:bg-violet-700 rounded-xl p-2 md:p-0">
+          <fa-icon [icon]="opportunitiesIcon"></fa-icon>
+          <span>Opportunities</span>
         </a>
       </div>
     </div>
     <div>
       <div class="flex hover:font-bold hover:bg-violet-700 rounded-xl p-2 md:p-0 justify-center gap-x-2">
-        <div (click)="logout()" class="flex items-center gap-x-2 hover:pointer">
+        <div (click)="logout()" class="flex items-center gap-x-2 cursor-pointer">
           <fa-icon [icon]="exitIcon"></fa-icon>
           <span>Sign out</span>
         </div>
