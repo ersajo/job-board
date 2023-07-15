@@ -38,13 +38,14 @@ export class LoginComponent implements OnInit {
       this.error = 'Invalid credentials';
       return;
     }
-    try {
-      const response: any = await this.authService.login(email, password);
-      localStorage.setItem('token', response.token);
-      this.router.navigate(['/user/dashboard']);
-    } catch (error) {
-      console.log(error);
-      this.error = 'Invalid credentials';
-    }
+    this.authService.login(email, password).subscribe({
+      next: (response: any) => {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/user/dashboard']);
+      },
+      error: () => {
+        this.error = 'Invalid credentials';
+      }
+    });
   }
 }
