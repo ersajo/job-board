@@ -10,7 +10,8 @@ export const companyAuthGuard: CanActivateFn = (route, state) => {
     router.navigate(['/company/login']);
     return false;
   }
-  companyService.profile(token).subscribe({
+  companyService.getProfile().subscribe({
+    next: () => {},
     error: () => {
       localStorage.removeItem('token');
       router.navigate(['/company/login']);

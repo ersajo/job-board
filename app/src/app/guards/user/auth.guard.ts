@@ -10,7 +10,7 @@ export const userAuthGuard: CanActivateFn = (route, state) => {
     router.navigate(['/user/login']);
     return false;
   }
-  userService.profile(token).subscribe({
+  userService.getProfile().subscribe({
     error: () => {
       localStorage.removeItem('token');
       router.navigate(['user/login']);
