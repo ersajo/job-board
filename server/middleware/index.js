@@ -6,7 +6,6 @@ const verifyUserToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
     const decoded = jwt.verify(token, process.env.SECRET);
-    if (decoded.exp < Date.now()) throw new Error('Token expired');
     const user = await userService.getOneById(decoded.id);
     if (!user) throw new Error('User not found');
     req.user = decoded;
@@ -22,7 +21,6 @@ const verifyCompanyToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
     const decoded = jwt.verify(token, process.env.SECRET);
-    if (decoded.exp < Date.now()) throw new Error('Token expired');
     const user = await companyService.getOneById(decoded.id);
     if (!user) throw new Error('User not found');
     req.user = decoded;

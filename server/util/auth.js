@@ -13,7 +13,7 @@ const createToken = (user) => {
       email: user.email,
     }
     const token = jwt.sign(data, process.env.SECRET, {
-      expiresIn: 86400,
+      expiresIn: '5m',
     });
     return token;
   } catch (error) {
