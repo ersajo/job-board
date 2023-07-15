@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
     });
     this.companyService.getOpenJobs().subscribe({
       next: (response: any) => {
-        console.log(response);
         this.openJobs = response.length;
       },
     });
