@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,4 +8,10 @@ import { faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class SidebarComponent {
   tachometerIcon = faTachometerAlt;
+  exitIcon = faArrowRightFromBracket;
+
+  logout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 }
