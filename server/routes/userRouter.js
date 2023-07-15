@@ -8,6 +8,8 @@ router.post('/', UserController.createOne);
 router.get('/', verifyUserToken, UserController.getOne);
 router.put('/', verifyUserToken, UserController.updateOne);
 router.delete('/', verifyUserToken, UserController.deleteOne);
+
+// Company auth
 router.post('/login', UserController.login);
 
 module.exports = router;

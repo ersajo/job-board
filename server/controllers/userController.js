@@ -20,7 +20,7 @@ const login = async (req, res) => {
     const token = auth.createToken(user)
     return res.status(200).json({ token })
   } catch (error) {
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };
 
@@ -37,7 +37,7 @@ const createOne = async (req, res) => {
     delete user.dataValues.password;
     return res.status(201).json(user);
   } catch (error) {
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };
 
@@ -54,7 +54,7 @@ const updateOne = async (req, res) => {
     delete user.dataValues.password;
     return res.status(200).json(user);
   } catch (error) {
-    return res.status(500).json({ error: error });
+    return res.status(500).json({ error });
   }
 };
 
