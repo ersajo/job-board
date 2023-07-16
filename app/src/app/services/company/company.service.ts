@@ -10,6 +10,7 @@ export class CompanyService{
   private API_URL = `${environment.API_URL}/api/v1/company`;
   public companyProfile = new BehaviorSubject({});
   public opportunities = new BehaviorSubject([]);
+  public opportunity = new BehaviorSubject({});
 
   constructor(
     private httpClient: HttpClient,
@@ -22,6 +23,7 @@ export class CompanyService{
         this.companyProfile.error(error);
       }
     });
+
     this.getOpportunities().subscribe({
       next: (response: any) => {
         this.opportunities.next(response);
@@ -52,6 +54,15 @@ export class CompanyService{
   private getOpportunities() {
     const token = localStorage.getItem('token');
     return this.httpClient.get(`${this.API_URL}/jobs`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+  }
+
+  public getOpportunity(id: string) {
+    const token = localStorage.getItem('token');
+    return this.httpClient.get(`${this.API_URL}/jobs/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       },

@@ -1,0 +1,27 @@
+<div class="grid md:grid-cols-12">
+  <app-sidebar class="sticky top-0 md:col-span-3 lg:col-span-2 md:h-screen"></app-sidebar>
+  <div *ngIf="error" class="md:col-span-9 lg:col-span-10 h-fit p-4">
+    <div class="mb-8 text-4xl">Opportunity</div>
+    <div class="md:col-span-10 h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      Opportunity not found!
+    </div>
+  </div>
+  <div *ngIf="!error" class="md:col-span-9 lg:col-span-10 h-fit p-4">
+    <div class="mb-8 text-4xl">{{ opportunity.title }}</div>
+    <div class="flex gap-4">
+      <div class="rounded-md px-4 py-2 text-violet-700 hover:bg-violet-700 hover:text-white hover:font-bold" [routerLink]="['update']">
+        <fa-icon [icon]="updateIcon"></fa-icon>
+        Edit
+      </div>
+      <div class="rounded-md px-4 py-2 text-violet-700 hover:bg-violet-700 hover:text-white hover:font-bold">
+        <fa-icon [icon]="deleteIcon"></fa-icon>
+        Delete
+      </div>
+    </div>
+    <div>
+      <div class="font-bold text-xl">Description</div>
+      <div class="text-lg">{{ opportunity.description }}</div>
+    </div>
+  </div>
+</div>
+

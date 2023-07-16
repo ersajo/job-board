@@ -3,11 +3,11 @@
   <div class="md:col-span-9 lg:col-span-10 h-fit p-4">
     <div class="mb-8 text-4xl">Welcome {{companyProfile?.name}}</div>
     <div class="md:col-span-10 h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      <div routerLink="/company/jobs" class="bg-violet-50 p-8 rounded-md shadow-xl text-violet-950 font-medium flex justify-between items-center cursor-pointer">
+      <div routerLink="/company/jobs" class="bg-violet-50 hover:bg-violet-200 p-8 rounded-md shadow-xl text-violet-950 font-medium flex justify-between items-center cursor-pointer">
         <div class="font-black text-6xl">{{ openJobs }}</div>
         <div class="font-bold">Opportunities</div>
       </div>
-      <div class="bg-violet-50 p-8 rounded-md shadow-xl text-violet-950 font-medium flex justify-between items-center">
+      <div routerLink="/company/jobs/new" class="bg-violet-50 hover:bg-violet-200 p-8 rounded-md shadow-xl text-violet-950 font-medium flex justify-between items-center cursor-pointer">
         <div class="font-black text-6xl">
           <fa-icon [icon]="createOpportunityIcon"></fa-icon>
         </div>

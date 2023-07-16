@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { JobListComponent } from './job-list/job-list.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
+import { JobFormComponent } from './job-form/job-form.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import { JobListComponent } from './job-list/job-list.component';
     LoginComponent,
     SidebarComponent,
     JobListComponent,
+    JobDetailComponent,
+    JobFormComponent,
   ],
   imports: [
     CommonModule,
