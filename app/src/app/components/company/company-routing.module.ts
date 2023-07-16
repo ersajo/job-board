@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { companyAuthGuard } from 'src/app/guards/company/auth.guard';
+import { JobListComponent } from './job-list/job-list.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [companyAuthGuard],
+  },
+  {
+    path: 'jobs',
+    component: JobListComponent,
     canActivate: [companyAuthGuard],
   }
 ];

@@ -1,0 +1,12 @@
+<div class="grid md:grid-cols-12">
+  <app-sidebar class="sticky top-0 md:col-span-3 lg:col-span-2 md:h-screen"></app-sidebar>
+  <div class="md:col-span-9 lg:col-span-10 h-fit p-4">
+    <div class="md:col-span-10 h-fit grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div *ngFor="let job of jobs" class="bg-violet-50 p-8 rounded-md shadow-xl text-violet-950 font-medium flex justify-between items-center cursor-pointer">
+        <div class="font-black">{{ job.applications.length }}</div>
+        <div class="font-bold">{{ job.title }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const CompanyModel = require('../models/companyModel');
 const OpportunityModel = require('../models/opportunityModel');
+const ApplicationModel = require('../models/applicationModel');
 
 const createOne = async (opportunity) => {
   try {
@@ -16,6 +17,7 @@ const getAllByCompany = async (companyId) => {
   try {
     const opportunities = await OpportunityModel.findAll({
       where: { companyId: companyId },
+      include: [ApplicationModel],
     });
     return opportunities;
   } catch (error) {
